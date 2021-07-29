@@ -1,31 +1,83 @@
 class Hand {
-    constructor(cards){
+    constructor(cards) {
         this.cards = cards || []
     }
-    checkMatches(cards){
-        for(let i = 0; i < cards.length; i++){
-            // code for checking matches
+    // this checks all cards, intended after hand is drawn
+    // this method is probably very inefficient and could be improved
+    removeMatches() {
+        for (let i = 0; i < this.cards.length; i++) {
+            const card = this.cards[i]
+            if (card === 'OM') {
+                continue
+            }
+            if (card.includes('10')) {
+                const index = this.cards.findIndex(c => {
+                    return c.includes('10') && c !== card
+                })
+                if (index === -1) {
+                    continue
+                }
+                game.discardPile.push(card)
+                game.discardPile.push(this.cards[index])
+                this.cards.splice(index, 1)
+                this.cards.splice(i, 1)
+                i--
+                continue
+            }
+            const index = this.cards.findIndex(c => {
+                return c.includes(card[0]) && c !== card
+            })
+            if (index === -1) {
+                continue
+            }
+            this.discardCards(card, this.cards[index])
+            i--
         }
     }
-    checkMatch(card){
-        if(card === 'OM'){
+    // this checks for matches only with one card, intended after drawing a card
+    checkMatchAndRemove(card) {
+        if (card === 'OM') {
             return false
         }
-        if(card.inclues('10')){
-            // check for 10s
-            // return true or false
-            return
+        if (card.includes('10')) {
+            const index = this.cards.findIndex(c => {
+                return c.includes('10')
+            })
+            if (index === -1) {
+                return false
+            }
+            game.discardPile.push(card)
+            game.discardPile.push(this.cards[index])
+            this.cards.splice(index, 1)
+            return true
         }
-        // check for matches with card[0]
+        const index = this.cards.findIndex(c => {
+            return c.includes(card[0])
+        })
+        if (index === -1) {
+            return false
+        }
+        game.discardPile.push(card)
+        this.discardCards(this.cards[index])
+        return true
     }
-    discardCards(card1, card2){
+    discardCards(card1, card2) {
         let index = this.cards.indexOf(card1)
+        game.discardPile.push(this.cards[index])
         this.cards.splice(index, 1)
-        index = this.cards.indexOf(card2)
-        this.cards.splice(index, 1)
-        if(!this.cards.length){
+        if (card2) {
+            index = this.cards.indexOf(card2)
+            game.discardPile.push(this.cards[index])
+            this.cards.splice(index, 1)
+        }
+        if (!this.cards.length) {
             // remove player from game
         }
-        // code for discard pile?
+    }
+    drawCard(card) {
+        const isMatch = this.checkMatchAndRemove(card)
+        if (!isMatch) {
+            this.cards.push(card)
+        }
     }
 }

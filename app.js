@@ -1,10 +1,11 @@
 const game = {
-    players: {}
+    players: {},
+    discardPile: [],
 }
 
 const pickOldMaidSuit = (str) => {
     let oldMaidSuit
-    if(str === undefined){
+    if (str === undefined) {
         switch (Math.floor(Math.random() * 4)) {
             case 0:
                 oldMaidSuit = 'hearts'
@@ -24,7 +25,7 @@ const pickOldMaidSuit = (str) => {
         }
         return oldMaidSuit
     }
-    switch(str){
+    switch (str) {
         case 'hearts':
             oldMaidSuit = 'hearts'
             break
@@ -47,16 +48,16 @@ const pickOldMaidSuit = (str) => {
 const dealCards = numPlayers => {
     // note that there is no check that numPlayers is a valid number,
     // or that game.players doesn't already exist
-    for(let i =0; i < numPlayers; i++){
+    for (let i = 0; i < numPlayers; i++) {
         game.players[i] = new Hand
     }
     game.oldMaidSuit = pickOldMaidSuit()
     const deck = DECK
     shuffleArray(deck)
     let i = 0
-    while(i < deck.length){
-        for(let j = 0; j < numPlayers; j++){
-            if(i < deck.length){
+    while (i < deck.length) {
+        for (let j = 0; j < numPlayers; j++) {
+            if (i < deck.length) {
                 game.players[j].cards.push(deck[i])
                 i++
             }
