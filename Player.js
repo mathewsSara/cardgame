@@ -1,4 +1,4 @@
-class Hand {
+class Player {
     constructor(cards) {
         this.cards = cards || []
     }
@@ -7,25 +7,11 @@ class Hand {
     removeMatches() {
         for (let i = 0; i < this.cards.length; i++) {
             const card = this.cards[i]
-            if (card === 'OM') {
-                continue
-            }
-            if (card.includes('10')) {
-                const index = this.cards.findIndex(c => {
-                    return c.includes('10') && c !== card
-                })
-                if (index === -1) {
-                    continue
-                }
-                game.discardPile.push(card)
-                game.discardPile.push(this.cards[index])
-                this.cards.splice(index, 1)
-                this.cards.splice(i, 1)
-                i--
+            if (card.value === 12) {
                 continue
             }
             const index = this.cards.findIndex(c => {
-                return c.includes(card[0]) && c !== card
+                return c.value === card.value && c !== card
             })
             if (index === -1) {
                 continue
@@ -36,23 +22,11 @@ class Hand {
     }
     // this checks for matches only with one card, intended after drawing a card
     checkMatchAndRemove(card) {
-        if (card === 'OM') {
+        if (card.value === 12) {
             return false
         }
-        if (card.includes('10')) {
-            const index = this.cards.findIndex(c => {
-                return c.includes('10')
-            })
-            if (index === -1) {
-                return false
-            }
-            game.discardPile.push(card)
-            game.discardPile.push(this.cards[index])
-            this.cards.splice(index, 1)
-            return true
-        }
         const index = this.cards.findIndex(c => {
-            return c.includes(card[0])
+            return c.value === card.value
         })
         if (index === -1) {
             return false
@@ -71,7 +45,7 @@ class Hand {
             this.cards.splice(index, 1)
         }
         if (!this.cards.length) {
-            // remove player from game
+            removePlayer()
         }
     }
     drawCard(card) {
@@ -79,5 +53,9 @@ class Hand {
         if (!isMatch) {
             this.cards.push(card)
         }
+    }
+    removePlayer(){
+        // remove player from the game
+        console.log('removePlayer was called, but its not doing anything yet');
     }
 }
