@@ -1,5 +1,6 @@
+
 //object array of all cards in the game
-const Cards = [
+export const Cards = [
     //heart suit
     {
         "name": "heartAce",
