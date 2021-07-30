@@ -57,5 +57,6 @@ class Player {
     removePlayer(){
         // remove player from the game
         console.log('removePlayer was called, but its not doing anything yet');
+        // check if only one player remains
     }
 }
