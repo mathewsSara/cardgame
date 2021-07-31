@@ -17,14 +17,27 @@ class Main extends Component {
         super(props)
         this.props.newGame()
     }
-    
+
     render(){
+        const Loading = () => {
+            return <h1>Loading...</h1>
+        }
+        const Loaded = () => {
+            return(
+                <React.Fragment>
+                    <h1>Hello World!</h1>
+                    <p>Num Players: {this.props.game.numPlayers}</p>
+                </React.Fragment>
+            )
+        }
         console.log(this.props);
+        if(this.props.game){
+            return (
+                <Loaded />
+            )
+        }
         return (
-            <React.Fragment>
-                <h1>Hello World!</h1>
-                <p>Num Players: </p>
-            </React.Fragment>
+            <Loading />
         )
     }
 }
