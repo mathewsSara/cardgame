@@ -9,6 +9,7 @@ const store = ConfigureStore()
 function App() {
   return (
     <Provider store={store}>
+      <Main />
       {/* <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -25,7 +26,6 @@ function App() {
           </a>
         </header>
       </div> */}
-      <Main />
     </Provider>
   );
 }

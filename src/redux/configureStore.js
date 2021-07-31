@@ -7,8 +7,8 @@ export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
             reducer: Reducer,
-            GameReducer,
-            CardReducer,
+            gameReducer: GameReducer,
+            cardReducer: CardReducer,
         })
     )
     return store
