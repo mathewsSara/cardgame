@@ -1,8 +1,12 @@
-class Game {
-    constructor() {
+import Player from './Player'
+import { Cards } from './DECK'
+
+export default class Game {
+    constructor(numPlayers) {
         this.players = {}
         this.discardPile = []
         this.oldMaidSuit = 'hearts' // default value
+        this.numPlayers = numPlayers || 2
     }
     pickOldMaidSuit(str) {
         let oldMaidSuit
@@ -45,13 +49,13 @@ class Game {
         }
         return oldMaidSuit
     }
-    dealCards(numPlayers) {
+    dealCards() {
         // note that there is no check that numPlayers is a valid number,
         // or that game.players doesn't already exist
-        for (let i = 0; i < numPlayers; i++) {
-            this.players[i] = new Player
-        }
         this.oldMaidSuit = this.pickOldMaidSuit()
+        for (let i = 0; i < this.numPlayers; i++) {
+            this.players[i] = new Player()
+        }
         const deck = [...Cards] // this is to avoid mutating the original array
         deck.forEach((card, index) => {
             if(card.value === 12 && card.suit !== this.oldMaidSuit){
@@ -61,7 +65,7 @@ class Game {
         this.shuffleArray(deck)
         let i = 0
         while (i < deck.length) {
-            for (let j = 0; j < numPlayers; j++) {
+            for (let j = 0; j < this.numPlayers; j++) {
                 if (i < deck.length) {
                     this.players[j].cards.push(deck[i])
                     i++

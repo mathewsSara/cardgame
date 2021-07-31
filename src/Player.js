@@ -1,4 +1,4 @@
-class Player {
+export default class Player {
     constructor(cards) {
         this.cards = cards || []
     }
@@ -31,21 +31,21 @@ class Player {
         if (index === -1) {
             return false
         }
-        game.discardPile.push(card)
+        // game.discardPile.push(card)
         this.discardCards(this.cards[index])
         return true
     }
     discardCards(card1, card2) {
         let index = this.cards.indexOf(card1)
-        game.discardPile.push(this.cards[index])
+        // game.discardPile.push(this.cards[index])
         this.cards.splice(index, 1)
         if (card2) {
             index = this.cards.indexOf(card2)
-            game.discardPile.push(this.cards[index])
+            // game.discardPile.push(this.cards[index])
             this.cards.splice(index, 1)
         }
         if (!this.cards.length) {
-            removePlayer()
+            this.removePlayer()
         }
     }
     drawCard(card) {
