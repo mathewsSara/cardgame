@@ -1,12 +1,15 @@
 import * as ActionTypes from './action'
+import Game from '../Game'
 
-export const CardReducer = (state = {}, action) => {
+export const Reducer = (state = {}, action) => {
     switch (action.type){
+        case ActionTypes.NEW_GAME:
+            state = {...state, game: new Game()}
+            return state
         case ActionTypes.DEAL_CARDS:
             // this spread is necessary for immutability
             const newState = {...state}
             newState.game.dealCards()
-            console.log('hi', newState)
             return newState
         case ActionTypes.DRAW_CARD:
             const cards = state.game.players[action.payload.playerIndex].cards
