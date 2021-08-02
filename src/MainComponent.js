@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { newGame, dealCards } from './redux/actionCreators'
 import Hand from './HandComponent'
+import Players from './PlayersComponent'
 
 const mapStateToProps = state => {
     return {
@@ -26,23 +27,27 @@ class Main extends Component {
         }
         const ReadyToDeal = () => {
             return(
-                <React.Fragment>
+                <div className="container">
                     <h1>Hello World!</h1>
                     <p>Num Players: {this.props.game.numPlayers}</p>
-                    <button onClick={() => {
+                    <button className="btn btn-primary" onClick={() => {
                         this.props.dealCards()
                         this.forceUpdate()
                     }}>Deal Cards</button>
-                </React.Fragment>
+                </div>
             )
         }
         const GameInProgress = () => {
             return(
-                <React.Fragment>
+                <div className="container">
                     <h1>Hello World!</h1>
                     <p>Num Players: {this.props.game.numPlayers}</p>
+                    {/* <Players players={this.props.game.players} /> */}
                     <Hand cards={this.props.game.players[0].cards}/>
-                </React.Fragment>
+                    <button className="btn btn-primary" onClick={() => {
+                        this.props.newGame()
+                    }}>New Game</button>
+                </div>
             )
         }
         console.log(this.props);
