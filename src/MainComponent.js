@@ -62,6 +62,7 @@ class Main extends Component {
         }
         const GameInProgress = () => {
             if(this.props.winner){
+                return(
                 <div className="container">
                     <h1>You Win!!</h1>
                     <form onSubmit={this.handleSubmit}>
@@ -80,6 +81,7 @@ class Main extends Component {
                         <input className="btn btn-primary" type="submit" value="New Game" />
                     </form>
                 </div>
+                )
             }
             if(this.props.game.currentTurn){
                 return(

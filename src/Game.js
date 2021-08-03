@@ -74,6 +74,7 @@ export default class Game {
             for (let j = 0; j < this.numPlayers; j++) {
                 if (i < deck.length) {
                     this.players[j].cards.push(deck[i])
+                    this.players[j].removeMatches()
                     i++
                 }
             }
