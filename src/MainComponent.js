@@ -8,7 +8,9 @@ import OpponentTurn from './OpponentTurn.js'
 
 const mapStateToProps = state => {
     return {
-        game: state.game
+        game: state.game,
+        isWinner: state.isWinner,
+        isLoser: state.isLoser
     }
 }
 
@@ -61,10 +63,34 @@ class Main extends Component {
             )
         }
         const GameInProgress = () => {
-            if(this.props.winner){
+            if(this.props.isWinner){
+                console.log('winner');
                 return(
                 <div className="container">
                     <h1>You Win!!</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <label className="form-label" htmlFor="numPlayers">Number of Players</label>
+                        <select className="form-select" id="numPlayers" name="numPlayers">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                        <input className="btn btn-primary" type="submit" value="New Game" />
+                    </form>
+                </div>
+                )
+            }
+            if(this.props.isLoser){
+                console.log('you lose');
+                return(
+                <div className="container">
+                    <h1>You Lose!</h1>
                     <form onSubmit={this.handleSubmit}>
                         <label className="form-label" htmlFor="numPlayers">Number of Players</label>
                         <select className="form-select" id="numPlayers" name="numPlayers">

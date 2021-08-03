@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { discardCard, drawCard, passTurn, win } from "./redux/actionCreators";
+import { discardCard, drawCard, passTurn, win, lose } from "./redux/actionCreators";
 
 const mapStateToProps = state => {
     return {
@@ -12,7 +12,8 @@ const mapDispatchToProps = {
     discardCard,
     drawCard,
     passTurn,
-    win
+    win,
+    lose
 }
 
 function RenderCard(props){
@@ -30,10 +31,28 @@ class DrawCards extends Component {
         this.props.drawCard(card, 0)
         if(!this.props.game.players[0].cards.length){
             this.props.win()
+            return
         }
         this.props.passTurn()
     }
     render(){
+        const game = this.props.game
+        if(game.players[game.target] === undefined){
+            return <div />
+        }
+        console.log(game.target);
+        let targetCards = game.players[game.target].cards
+        if(!targetCards.length){
+            while(!targetCards.length){
+                game.target++
+                if(game.players[game.target] === undefined){
+                    console.log('hello');
+                    this.props.lose()
+                    return <div />
+                }
+                targetCards = game.players[game.target].cards
+            }
+        }
         const cards = this.props.game.players[this.props.game.target].cards.map((card, index) => {
             return (
                 <div className="col my-3" key={card.name}>

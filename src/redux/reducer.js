@@ -5,7 +5,7 @@ export const Reducer = (state = {}, action) => {
     let newState, player, game
     switch (action.type){
         case ActionTypes.NEW_GAME:
-            state = {...state, winner: false, game: new Game(action.payload)}
+            state = {...state, isWinner: false, isLoser: false, game: new Game(action.payload)}
             return state
         case ActionTypes.DEAL_CARDS:
             // this spread is necessary for immutability
@@ -36,7 +36,9 @@ export const Reducer = (state = {}, action) => {
             }
             return state
         case ActionTypes.WIN:
-            return {...state, winner: true}
+            return {...state, isWinner: true}
+        case ActionTypes.LOSE:
+            return {...state, isLoser: true}
         default:
             return state
     }

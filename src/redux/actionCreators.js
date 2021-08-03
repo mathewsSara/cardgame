@@ -32,3 +32,7 @@ export const passTurn = () => ({
 export const win = () => ({
     type: ActionTypes.WIN
 })
+
+export const lose = () => ({
+    type: ActionTypes.LOSE
+})
