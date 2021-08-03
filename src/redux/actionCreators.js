@@ -24,3 +24,7 @@ export const discardCard = (cardIndex, playerIndex) => ({
         playerIndex
     }
 })
+
+export const passTurn = () => ({
+    type: ActionTypes.PASS_TURN
+})

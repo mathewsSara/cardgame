@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { discardCard, drawCard } from "./redux/actionCreators";
+import { discardCard, drawCard, passTurn } from "./redux/actionCreators";
 
 const mapStateToProps = state => {
     return {
@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     discardCard,
-    drawCard
+    drawCard,
+    passTurn
 }
 
 function RenderCard(props){
@@ -27,6 +28,7 @@ class DrawCards extends Component {
         console.log(this);
         this.props.discardCard(index, this.props.game.target)
         this.props.drawCard(card, 0)
+        this.props.passTurn()
     }
     render(){
         const cards = this.props.game.players[this.props.game.target].cards.map((card, index) => {

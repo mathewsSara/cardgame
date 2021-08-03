@@ -2,7 +2,7 @@ import * as ActionTypes from './action'
 import Game from '../Game'
 
 export const Reducer = (state = {}, action) => {
-    let newState, player
+    let newState, player, game
     switch (action.type){
         case ActionTypes.NEW_GAME:
             state = {...state, game: new Game(action.payload)}
@@ -14,7 +14,7 @@ export const Reducer = (state = {}, action) => {
             return newState
         case ActionTypes.DRAW_CARD:
             console.log(action.payload);
-            const player = state.game.players[action.payload.playerIndex]
+            player = state.game.players[action.payload.playerIndex]
             player.drawCard(action.payload.card)
             return state
         case ActionTypes.DISCARD_CARD:
@@ -27,6 +27,14 @@ export const Reducer = (state = {}, action) => {
                     )
             console.log(state.game.players[action.payload.playerIndex].cards.length);
             return state
+        case ActionTypes.PASS_TURN:
+            game = {...state.game}
+            game.currentTurn++
+            if(game.currentTurn >= game.numPlayers){
+                game.currentTurn = 0
+            }
+            newState = {...state, game}
+            return newState
         default:
             return state
     }
