@@ -22,6 +22,18 @@ class OpponentTurn extends Component{
         while(this.props.game.currentTurn !== 0){
             const game = this.props.game
             const player = game.players[game.currentTurn]
+            if(player.isWinner){
+                this.props.passTurn()
+                continue
+            }
+            while(game.players[player.target].isWinner){
+                console.log('hello');
+                player.target++
+                if(game.players[player.target] === undefined){
+                    player.target = 0
+                }
+                
+            }
             const target = game.players[player.target]
             const numCards = target.cards.length
             const randNum = Math.floor(Math.random() * numCards)
@@ -29,7 +41,6 @@ class OpponentTurn extends Component{
             this.props.drawCard(card, game.currentTurn)
             this.props.discardCard(randNum, player.target)
             this.props.passTurn()
-            console.log(game.currentTurn);
         }
         return <div />
     }
