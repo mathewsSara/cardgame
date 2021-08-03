@@ -43,13 +43,13 @@ export default class Hand extends Component {
     render(){
         const hand = this.props.cards.map(card => {
             return(
-                <div className="col my-3" key={card.name}>
+                <div className="col-1 m-3" key={card.name}>
                     <RenderCard card={card} />
                 </div>
             )
         })
         return(
-            <div ref={elem => this.nv = elem} className="row">
+            <div className="row justify-content-center">
                 {hand}
             </div>
         )

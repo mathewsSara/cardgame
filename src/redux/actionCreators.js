@@ -1,7 +1,8 @@
 import * as ActionTypes from './action'
 
-export const newGame = () => ({
-    type: ActionTypes.NEW_GAME
+export const newGame = (numPlayers) => ({
+    type: ActionTypes.NEW_GAME,
+    payload: numPlayers
 })
 
 export const dealCards = () => ({

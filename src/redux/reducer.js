@@ -4,7 +4,7 @@ import Game from '../Game'
 export const Reducer = (state = {}, action) => {
     switch (action.type){
         case ActionTypes.NEW_GAME:
-            state = {...state, game: new Game()}
+            state = {...state, game: new Game(action.payload)}
             return state
         case ActionTypes.DEAL_CARDS:
             // this spread is necessary for immutability
