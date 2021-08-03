@@ -10,9 +10,17 @@ const mapStateToProps = state => {
 
 function RenderPlayer({player, index}){
     if(index === 0) return <React.Fragment />
+    if(!player[index].cards.length){
+        return(
+            <React.Fragment>
+                <h1>Player {index}</h1>
+                <p>Out of cards!</p>
+            </React.Fragment>
+        )
+    }
     return(
         <React.Fragment>
-            <h2>Player {index}</h2>
+            <h1>Player {index}</h1>
             <p>{player[index].cards.length} cards</p>
         </React.Fragment>
     )
@@ -23,13 +31,11 @@ class Players extends Component {
         super(props)
     }
     render(){
-        console.log(this.props.game.players);
         const arr = []
         for(let key in this.props.game.players){
             const value = this.props.game.players[key]
             arr.push({[key]: value})
         }
-        console.log(arr);
         const players = arr.map((player, index) => {
             return(
                 <div className="col" key={index}>

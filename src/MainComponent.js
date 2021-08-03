@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { newGame, dealCards } from './redux/actionCreators'
 import Hand from './HandComponent'
 import Players from './PlayersComponent'
+import DrawCards from './DrawCardsComponent'
 
 const mapStateToProps = state => {
     return {
@@ -18,22 +19,38 @@ const mapDispatchToProps = {
 class Main extends Component {
     constructor(props){
         super(props)
-        this.props.newGame(4)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    handleSubmit(value){
-        console.log(value);
-        // this.props.newGame(value)
+    handleSubmit(event){
+        event.preventDefault()
+        this.props.newGame(event.target.numPlayers.value)
     }
 
     render(){
         const Loading = () => {
-            return <h1>Loading...</h1>
+            return (
+                <div className="container">
+                <form className="mt-3" onSubmit={this.handleSubmit}>
+                    <label className="form-label" htmlFor="numPlayers">Number of Players</label>
+                    <select className="form-select" id="numPlayers" name="numPlayers">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <input className="btn btn-primary" type="submit" value="New Game" />
+                </form>
+                </div>
+            )
         }
         const ReadyToDeal = () => {
             return(
                 <div className="container">
-                    <h1>Hello World!</h1>
                     <p>Num Players: {this.props.game.numPlayers}</p>
                     <button className="btn btn-primary" onClick={() => {
                         this.props.dealCards()
@@ -43,31 +60,52 @@ class Main extends Component {
             )
         }
         const GameInProgress = () => {
+            if(this.props.game.currentTurn){
+                return(
+                    <div className="container">
+                        <p>Num Players: {this.props.game.numPlayers}</p>
+                        <Players players={this.props.game.players} />
+                        <Hand cards={this.props.game.players[0].cards}/>
+                        <form onSubmit={this.handleSubmit}>
+                            <label className="form-label" htmlFor="numPlayers">Number of Players</label>
+                            <select className="form-select" id="numPlayers" name="numPlayers">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <input className="btn btn-primary" type="submit" value="New Game" />
+                        </form>
+                    </div>
+                )
+            }
             return(
                 <div className="container">
-                    <h1>Hello World!</h1>
-                    <p>Num Players: {this.props.game.numPlayers}</p>
-                    <Players players={this.props.game.players} />
-                    <Hand cards={this.props.game.players[0].cards}/>
-                    <form handleSubmit={this.handleSubmit}>
-                        <label htmlFor="numPlayers">Number of Players</label>
-                        <select id="numPlayers" name="numPlayers">
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                        <input className="btn btn-primary" type="submit" value="New Game" />
-                    </form>
-                    <button className="btn btn-primary mt-5" onClick={() => {
-                        this.props.newGame()
-                    }}>New Game</button>
-                </div>
+                        <p>Num Players: {this.props.game.numPlayers}</p>
+                        <Players players={this.props.game.players} />
+                        <Hand cards={this.props.game.players[0].cards}/>
+                        <DrawCards mainComponent={this} />
+                        <form onSubmit={this.handleSubmit}>
+                            <label className="form-label" htmlFor="numPlayers">Number of Players</label>
+                            <select className="form-select" id="numPlayers" name="numPlayers">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <input className="btn btn-primary" type="submit" value="New Game" />
+                        </form>
+                    </div>
             )
         }
         if(this.props.game){

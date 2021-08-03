@@ -1,6 +1,8 @@
 export default class Player {
-    constructor(cards) {
+    constructor(index, cards) {
         this.cards = cards || []
+        this.index = index
+        this.isWinner = false
     }
     // this checks all cards, intended after hand is drawn
     // this method is probably very inefficient and could be improved
@@ -56,7 +58,9 @@ export default class Player {
     }
     removePlayer(){
         // remove player from the game
-        console.log('removePlayer was called, but its not doing anything yet');
+        this.isWinner = true
+        console.log('removePlayer was called');
         // check if only one player remains
+        
     }
 }

@@ -7,6 +7,8 @@ export default class Game {
         this.discardPile = []
         this.oldMaidSuit = 'hearts' // default value
         this.numPlayers = numPlayers || 2
+        this.target = 1
+        this.currentTurn = 0
     }
     pickOldMaidSuit(str) {
         let oldMaidSuit
@@ -54,7 +56,7 @@ export default class Game {
         // or that game.players doesn't already exist
         this.oldMaidSuit = this.pickOldMaidSuit()
         for (let i = 0; i < this.numPlayers; i++) {
-            this.players[i] = new Player()
+            this.players[i] = new Player(i)
         }
         const deck = [...Cards] // this is to avoid mutating the original array
         deck.forEach((card, index) => {
