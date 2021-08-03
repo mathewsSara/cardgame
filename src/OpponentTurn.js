@@ -27,7 +27,6 @@ class OpponentTurn extends Component{
                 continue
             }
             while(game.players[player.target].isWinner){
-                console.log('hello');
                 player.target++
                 if(game.players[player.target] === undefined){
                     player.target = 0

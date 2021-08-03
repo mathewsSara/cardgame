@@ -40,13 +40,11 @@ class DrawCards extends Component {
         if(game.players[game.target] === undefined){
             return <div />
         }
-        console.log(game.target);
         let targetCards = game.players[game.target].cards
         if(!targetCards.length){
             while(!targetCards.length){
                 game.target++
                 if(game.players[game.target] === undefined){
-                    console.log('hello');
                     this.props.lose()
                     return <div />
                 }

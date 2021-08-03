@@ -132,7 +132,7 @@ class Main extends Component {
                                 </select>
                                 <input className="btn btn-primary" type="submit" value="New Game" />
                             </form>
-                            <button onClick={() => this.forceUpdate()}>Update</button>
+                            <button className="btn btn-primary mt-5" onClick={() => this.forceUpdate()}>Next Turn</button>
                         </div>
                     </React.Fragment>
                 )
@@ -158,7 +158,7 @@ class Main extends Component {
                         </select>
                         <input className="btn btn-primary" type="submit" value="New Game" />
                     </form>
-                    <button onClick={() => this.forceUpdate()}>Update</button>
+                    <button className="btn btn-primary mt-5" onClick={() => this.forceUpdate()}>Next Turn</button>
                 </div>
             )
         }
