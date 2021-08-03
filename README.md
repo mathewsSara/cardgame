@@ -1,10 +1,36 @@
-# Getting Started with Create React App
+# Old Maid
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Deployment
 
-## Available Scripts
+The site is available at https://pedantic-goldstine-3543e1.netlify.app/
 
-In the project directory, you can run:
+This project was created by Sara Mathews and Johan Preus
+
+## Preview
+
+![screencapture-localhost-3000-2021-08-03-02_37_24](https://user-images.githubusercontent.com/69329760/127976710-5cdba1d5-3071-41be-9604-facfb162d29f.png)
+
+![screencapture-pedantic-goldstine-3543e1-netlify-app-2021-08-03-02_39_39](https://user-images.githubusercontent.com/69329760/127977013-9d89cccc-8e95-4356-96ff-f47ae74d1d71.png)
+
+## Sara Mathews
+
+https://github.com/mathewsSara
+
+https://www.linkedin.com/in/smathews120/
+
+## Johan Preus
+
+https://github.com/johan-preus
+
+https://www.linkedin.com/in/johan-p-6a852720a/
+
+## Development
+
+Clone this repository with `git clone https://github.com/mathewsSara/cardgame.git`
+
+Install modules with `npm i`
+
+The following default `create-react-app` commands are available:
 
 ### `npm start`
 
@@ -39,32 +65,4 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
