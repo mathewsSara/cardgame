@@ -2,7 +2,7 @@
 
 ## Deployment
 
-The site is available at https://pedantic-goldstine-3543e1.netlify.app/
+The site is available at https://pedantic-goldstine-3543e1.netlify.app/ and https://pedantic-haibt-87f000.netlify.app/
 
 This project was created by Sara Mathews and Johan Preus
 
