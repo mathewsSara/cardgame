@@ -25,7 +25,7 @@ class DrawCards extends Component {
         super(props)
     }
     handleClick(index, card){
-        console.log(this);
+        console.log(this.props.game.currentTurn);
         this.props.discardCard(index, this.props.game.target)
         this.props.drawCard(card, 0)
         this.props.passTurn()

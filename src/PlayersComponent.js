@@ -22,6 +22,7 @@ function RenderPlayer({player, index}){
         <React.Fragment>
             <h1>Player {index}</h1>
             <p>{player[index].cards.length} cards</p>
+            <p>Target: {player[index].target}</p>
         </React.Fragment>
     )
 }

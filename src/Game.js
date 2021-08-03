@@ -2,10 +2,10 @@ import Player from './Player'
 import { Cards } from './DECK'
 
 export default class Game {
-    constructor(numPlayers) {
+    constructor(numPlayers, oldMaidSuit) {
         this.players = {}
         this.discardPile = []
-        this.oldMaidSuit = 'hearts' // default value
+        this.oldMaidSuit = oldMaidSuit || 'hearts' 
         this.numPlayers = numPlayers || 2
         this.target = 1
         this.currentTurn = 0
@@ -56,7 +56,11 @@ export default class Game {
         // or that game.players doesn't already exist
         this.oldMaidSuit = this.pickOldMaidSuit()
         for (let i = 0; i < this.numPlayers; i++) {
-            this.players[i] = new Player(i)
+            if(i === this.numPlayers - 1){
+                this.players[i] = new Player(i, null, true)
+            } else{
+                this.players[i] = new Player(i)
+            }
         }
         const deck = [...Cards] // this is to avoid mutating the original array
         deck.forEach((card, index) => {

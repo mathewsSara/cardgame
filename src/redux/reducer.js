@@ -13,7 +13,6 @@ export const Reducer = (state = {}, action) => {
             newState.game.dealCards()
             return newState
         case ActionTypes.DRAW_CARD:
-            console.log(action.payload);
             player = state.game.players[action.payload.playerIndex]
             player.drawCard(action.payload.card)
             return state
@@ -25,16 +24,20 @@ export const Reducer = (state = {}, action) => {
                         state.game.players[action.payload.playerIndex].cards
                             .slice(action.payload.cardIndex + 1)
                     )
-            console.log(state.game.players[action.payload.playerIndex].cards.length);
             return state
         case ActionTypes.PASS_TURN:
-            game = {...state.game}
-            game.currentTurn++
-            if(game.currentTurn >= game.numPlayers){
-                game.currentTurn = 0
+            // game = {...state.game}
+            // game.currentTurn++
+            // if(game.currentTurn >= game.numPlayers){
+            //     game.currentTurn = 0
+            // }
+            // newState = {...state, game}
+            // return newState
+            state.game.currentTurn++
+            if(state.game.currentTurn >= state.game.numPlayers){
+                state.game.currentTurn = 0
             }
-            newState = {...state, game}
-            return newState
+            return state        
         default:
             return state
     }
